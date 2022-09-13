@@ -2,7 +2,7 @@
   "name": "restaurant-record-app",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild": "ng build --prod",
+    "heroku-postbuild": "npm run build",
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build",
