@@ -21,8 +21,8 @@ app.get("/",(req,res)=>{
 })
 
 // import route
-const restaurantRoute = require("./routes/restaurant");
-const userRoute = require("./routes/user")
+const restaurantRoute = require("./Backend/routes/restaurant");
+const userRoute = require("./Backend./routes/user")
 
 //Middleware
 app.use(express.json());
