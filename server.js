@@ -15,9 +15,9 @@ mongoose.connect(
   }
 );
 
-app.use (express.static(__dirname + '/dist/RESTAURANTRECORDAPP'));
+app.use (express.static(__dirname + '/dist/restaurant-record-app'));
 app.get("/",(req,res)=>{
-  res.sendFile(path.join(__dirname+ '/dist/RESTAURANTRECORDAPP/index.html'))
+  res.sendFile(path.join(__dirname+ '/dist/restaurant-record-app/index.html'))
 })
 
 // import route
