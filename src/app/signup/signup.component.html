@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body text-center">
+          <h2 class="card-title font-weight-bold">Restaurant Signup</h2>
+          <h5 class="card-text font-weight-normal"><i class="fa-solid fa-heart"></i> Get Free Membership <i class="fa-solid fa-heart"></i></h5>
+        </div>
+
+        <div class="form-group">
+          <div [ngClass]="messageClass" *ngIf="error">
+            {{message}}
+          </div>
+        </div>
+
+        <form action="" [formGroup]="signupForm" (ngSubmit)="signUp()">
+          <div class="form-group">
+            <label for="">Name</label>
+            <input type="text" formControlName="name" id="name" class="form-control" placeholder="Enter Your Name">
+            <div *ngIf="Username?.invalid && Username?.errors?.['maxlength']">
+              <span class ="small text-warning">*Username should less than 25 character!</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Mobile</label>
+            <input type="text" formControlName="mobile" id="mobile" class="form-control" placeholder="Enter Your Mobile Phone">
+              <div *ngIf="Mobile?.invalid && Mobile?.errors?.['pattern']">
+                <span class ="small text-warning">*Please enter 10 digit mobile number</span>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="">Email</label>
+            <input type="text" formControlName="email" id="email" class="form-control" placeholder="Enter Your Email Address">
+            <div *ngIf="Email?.invalid && Email?.errors?.['email']">
+              <span class ="small text-warning">*Invalid Email</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Password</label>
+            <input type="password" formControlName="password" id="password" class="form-control" placeholder="Enter Password">
+            <div *ngIf="Password?.invalid && Password?.errors?.['minlength']">
+              <span class ="small text-warning">*Password must at least 6 characters!</span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary float-right" [disabled]="!signupForm.valid">Submit</button>
+          <small>Already Member? <a routerLink="/login" class="text-decoration-none"> Click to Login</a> </small>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

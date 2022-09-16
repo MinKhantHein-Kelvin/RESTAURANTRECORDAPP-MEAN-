@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const Restaurant = require('../modals/Restaurant');
-const verify = require ("./verifyToken.js");
+// const verify = require ("./verifyToken.js");
 
 // Add New Restaurant
-router.post('/',verify,async (req,res)=>{
+router.post('/',async (req,res)=>{
     const restaurant = new Restaurant({
         name: req.body.name,
         email: req.body.email,
@@ -40,7 +40,7 @@ router.get('/:restaurantId',async (req,res)=>{
 });
 
 // Update Restaurant
-router.put('/:restaurantId',verify,async (req,res)=>{
+router.put('/:restaurantId',async (req,res)=>{
     const restaurant = {
         name: req.body.name,
         email: req.body.email,
@@ -57,7 +57,7 @@ router.put('/:restaurantId',verify,async (req,res)=>{
 })
 
 //Delete Restaurant
-router.delete('/:restaurantId',verify,async (req,res)=>{
+router.delete('/:restaurantId',async (req,res)=>{
     try {
         const deleteRestaurant =await Restaurant.findByIdAndDelete(req.params.restaurantId);
         res.json(deleteRestaurant);

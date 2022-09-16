@@ -1,5 +1,13 @@
-<div class="container-fluid">
-    <div class="col-md-12">
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm fixed-top">
+  <h5 class="my-0 mr-md-auto font-weight-bold text-uppercase">Restaurant Record App</h5>
+  <nav class="my-2 my-md-0  mr-md-1">
+    <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#dataModal" (click)="clickAddRestaurant()">Add Restaurant</a>
+    <a (click)="userService.logOut()" class="btn btn-warning ml-2">LogOut</a>
+  </nav>
+</div>
+
+<div class="container-fluid" style="margin-top: 80px;">
+    <!-- <div class="col-md-12"> -->
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -29,7 +37,7 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </button>
-      </div>
+      <!-- </div> -->
   </div>
 
   <table class="table table-striped mt-3">
@@ -48,19 +56,68 @@
       <tbody>
         <tr *ngFor="let data of allRestaurentData; index as i">
           <th scope="row">{{ i + 1 }}</th>
+          <!-- <td scope="row">{{data._id}}</td> -->
           <td>{{data.name}}</td>
           <td>{{data.email}}</td>
           <td>{{data.mobile}}</td>
           <td>{{data.address}}</td>
           <td>{{data.services}}</td>
           <td>
-            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Edit</button>&nbsp;
-            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-info mb-2" data-toggle="modal" data-target="#dataModal" (click)="onEditRestaurent(data)">Edit</button>&nbsp;
+            <button class="btn btn-danger mb-2" (click)="deleteRestaurant(data)">Delete</button>
           </td>
         </tr>
 
       </tbody>
   </table>
+
+
+
+
+  <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" #closemodal class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue" #modalForm="ngForm">
+          <div class="form-group">
+            <label for="">Names</label>
+            <input type="text" id="name" class="form-control" placeholder="Restaurent Name Here" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="">Email</label>
+            <input type="email" id="email" class="form-control" placeholder="Restaurent Email Id" formControlName="email">
+          </div>
+          <div class="form-group">
+            <label for="">Mobile</label>
+            <input type="text" id="mobile" class="form-control" placeholder="Restaurent Mobile Number" formControlName="mobile">
+          </div>
+          <div class="form-group">
+            <label for="">Address</label>
+            <input type="text" id="address" class="form-control" placeholder="Restaurent Address Here" formControlName="address">
+          </div>
+          <div class="form-group">
+            <label for="">Services</label>
+            <input type="text" class="form-control" placeholder="Restaurent Services like Coffee, Drinks" formControlName="services">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="resetModal()">Clear</button>
+        <button type="button" *ngIf="showAdd" class="btn btn-primary" (click)="addRestaurant()">Add Details</button>
+        <button type="button" *ngIf="showUpdate" class="btn btn-primary" (click)="updateRestaurant()">Update Details</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </div>
 

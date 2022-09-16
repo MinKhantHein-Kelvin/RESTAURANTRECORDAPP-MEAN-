@@ -7,7 +7,7 @@ const jwt = require ("jsonwebtoken");
 router.post('/register',async(req,res)=>{
 
 // Email Exist
- const emailExist = User.findOne({email : req.body.email});
+ const emailExist =await User.findOne({email : req.body.email});
 
 // Hash password
     var salt = bcrypt.genSaltSync(10);
@@ -15,6 +15,7 @@ router.post('/register',async(req,res)=>{
 
     const user = new User({
         name : req.body.name,
+        mobile : req.body.mobile,
         email : req.body.email,
         password : hash
     });
@@ -24,7 +25,7 @@ router.post('/register',async(req,res)=>{
         }
         const saveUser =await user.save();
         res.json({success : true, message : "User Register Successful!"});
-        
+
     } catch (error) {
         res.json({success : false, message : "Couldn't Save User!"});
     }
